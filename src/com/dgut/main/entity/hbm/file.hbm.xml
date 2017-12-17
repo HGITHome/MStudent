@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dgut.main.entity">
+	<class name="UploadFile" table="file">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="integer" column="id"><generator class="identity"/></id>
+		<property name="fileName" column="fileName" type="string" not-null="true" length="100"/>
+		<property name="filePath" column="filePath" type="string" not-null="true" length="100"/>
+		<property name="uploadTime" column="uploadTime" type="timestamp" not-null="true" />
+		<property name="downNumber" column="downNumber" type="integer" not-null="true" length="11" />
+		<many-to-one name="admin" column="admin_id" class="com.dgut.main.entity.Admin" />
+	</class>
+</hibernate-mapping>

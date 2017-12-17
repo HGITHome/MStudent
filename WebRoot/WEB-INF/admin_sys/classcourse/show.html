@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>学生信息管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<#include "/admin_sys/head.html"/>
+
+<link
+	href="${base}/res/assets/global/plugins/datatables/datatables.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="${base}/res/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css"
+	rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+function getTableForm() {
+	return document.getElementById('tableForm');
+}
+
+</script>
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
+	<!-- BEGIN HEADER -->
+	<#include "/admin_sys/top.html"/>
+	<!-- END HEADER -->
+	<!-- BEGIN HEADER & CONTENT DIVIDER -->
+	<div class="clearfix"></div>
+	<!-- END HEADER & CONTENT DIVIDER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<#assign tb_14=true />
+			<#assign tb_14_ul=true  />
+			<#assign tb_14_li_2=true />
+			<#assign tb_14_arrow=true />
+		<#include "/admin_sys/left.html"/>
+		<!-- END SIDEBAR -->
+		<div class="page-content-wrapper">
+			<!-- BEGIN CONTENT BODY -->
+			<div style="min-height:1022px" class="page-content">
+				<!-- page bar start -->
+				<div class="page-bar">
+
+					<ul class="page-breadcrumb">
+						<li><a href="v_list.do">课程管理</a> <i class="fa fa-angle-right"></i>
+						</li>
+						<li><span>班级课程</span></li>
+					</ul>
+				</div>
+				<div class="row ">
+					<div class="col-md-12">
+						<!-- BEGIN SAMPLE FORM PORTLET-->
+						<div class="portlet box red bordered">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-comments"></i>
+								</div>
+								<div class="actions">
+									<a href="v_add.do?id=${class.id}" class="btn btn-default btn-sm"> <i
+										class="fa fa-plus"></i>添加课程</a> 
+									<a href="v_list.do" class="btn btn-default btn-sm"> <i
+										class="fa fa-reply"></i>返回</a> 
+									
+								</div>
+							</div>
+							<div class="portlet-body">
+							<h3>${class.major.department.name}-${class.major.name}-${class.className} 的课程安排</h3>
+							</div>
+						</div>
+						<!-- END SAMPLE FORM PORTLET-->
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+					  <div class="col-md-12">
+					  <#assign i=0>
+					  <#list cclist as list>
+					  <#if list??>
+					  
+                            <div class="portlet light portlet-fit bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-bubble font-dark"></i>
+                                        <span class="caption-subject font-dark bold uppercase">第${list_index+1}学期</span>
+                                    </div>
+                                      <div class="actions">
+                                        <div class="btn-group">
+                                            <a class="btn dark btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> 更多操作
+                                                <i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li>
+                                                   <a href="o_delete.do?term=${list_index+1}&classId=${class.id}" onclick="if(!confirm('确定删除？')) {return false;}"> <i
+																		class="icon-docs"></i>删除</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-scrollable">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>课程名称</th>
+                                                    <th>学分</th>
+                                                    <th>学时 </th>
+                                                    <th>开课单位</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <#list list as c>
+                                                <tr>
+                                                    <td> ${c.course.courseName!} </td>
+                                                    <td> ${c.course.creditHour!} </td>
+                                                    <td> ${c.course.courseHour!} </td>
+                                                    <td> ${c.course.department.name!}</td>
+                                                </tr>
+                                               
+                                         </#list>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </#if>
+                         </#list>
+                          </div>
+                        </div>
+
+				</div>
+
+			</div>
+		</div>
+		<#include "/common/bootAlert_message.html"/>
+	</div>
+	<!-- END CONTAINER -->
+</body>
+
+</html>

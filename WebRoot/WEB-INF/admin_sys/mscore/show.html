@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>学生信息管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<#include "/admin_sys/head.html"/>
+
+<link
+	href="${base}/res/assets/global/plugins/datatables/datatables.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="${base}/res/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css"
+	rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+function getTableForm() {
+	return document.getElementById('tableForm');
+}
+
+</script>
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
+	<!-- BEGIN HEADER -->
+	<#include "/admin_sys/top.html"/>
+	<!-- END HEADER -->
+	<!-- BEGIN HEADER & CONTENT DIVIDER -->
+	<div class="clearfix"></div>
+	<!-- END HEADER & CONTENT DIVIDER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<#assign tb_15=true />
+			<#assign tb_15_ul=true  />
+			<#assign tb_15_li_2=true />
+			<#assign tb_15_arrow=true />
+		<#include "/admin_sys/left.html"/>
+		<!-- END SIDEBAR -->
+		<div class="page-content-wrapper">
+			<!-- BEGIN CONTENT BODY -->
+			<div style="min-height:1022px" class="page-content">
+				<!-- page bar start -->
+				<div class="page-bar">
+
+					<ul class="page-breadcrumb">
+						<li><a href="v_list.do">成绩管理</a> <i class="fa fa-angle-right"></i>
+						</li>
+						<li><span>统计成绩</span></li>
+					</ul>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN SAMPLE FORM PORTLET-->
+						<div class="portlet box red bordered">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-comments"></i>
+								</div>
+								<div class="actions">
+									<a href="s_list.do?classId=${student.bclass.id!}" class="btn btn-default btn-sm"> <i
+										class="fa fa-reply"></i>返回</a> 
+									
+								</div>
+							</div>
+							<div class="portlet-body">
+						 <div class="btn-group">
+							<h3>${student.schoolNumber}-${student.name} 的成绩</h3>
+						</div>	
+								<br/>
+								<br/>
+							
+							</div>
+							
+						</div>
+						<!-- END SAMPLE FORM PORTLET-->
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+					  <div class="col-md-12">
+					  <#assign i=0>
+					  <#list scoreList as temp>
+					  <#if temp??>
+                            <div class="portlet light portlet-fit bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-bubble font-dark"></i>
+                                        <span class="caption-subject font-dark bold uppercase">第${temp_index+1}学期</span>
+                                    </div>
+                                     <div class="actions">
+                                        <div class="btn-group">
+                                       <span class="caption-subject font-dark bold uppercase">总绩点:${temp.totalPoint} <br/>
+                                                                                                                         总学分绩点:${temp.totalGradePoint}</span>
+                                        </div>
+                                    </div>
+                                                                                             
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-scrollable">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>课程课程类别</th>
+                                                    <th>课程名称</th>
+                                                    <th>学分</th>
+                                                    <th>成绩 </th>
+                                                    <th>绩点</th>
+                                                    <th>学分绩点</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <#list temp.list as score>
+                                                <tr>
+                                                    <td> ${score.course.courseCategory.name!} </td>
+                                                    <td> ${score.course.courseName!} </td>
+                                                    <td> ${score.course.creditHour!} </td>
+                                                    <td> ${score.score!} </td>
+                                                    <td> ${score.point!}</td>
+                                                    <td> ${score.grade_point!}</td>
+                                                </tr>
+                                          </#list>
+                                         
+                                             
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </#if>
+                         </#list>
+                         
+                          <div class="portlet light portlet-fit bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-bubble font-dark"></i>
+                                        <span class="caption-subject font-dark bold uppercase">数据统计</span>
+                                    </div>                                         
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-scrollable">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center">总绩点</th>
+                                                    <th style="text-align: center">总学分绩点</th>
+                                                    <th style="text-align: center">60分以下 </th>
+                                                    <th style="text-align: center">60-70分(不包括)</th>
+                                                    <th style="text-align: center">70-80分(不包括)</th>
+                                                    <th style="text-align: center">80-90分(不包括)</th>
+                                                    <th style="text-align: center">90分以上</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td style="text-align: center">${total[0]!}</td>
+                                                    <td style="text-align: center">${total[1]!}</td>
+                                                    <#list tempList as temp>
+                                                    <td style="text-align: center">${temp.number!}(${temp.proportion!}%)</td>
+                                                    </#list>
+                                                </tr>
+                                         
+                                             
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                         
+                          </div>
+                        </div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- BEGIN CONTENT -->
+
+		<#include "/common/bootAlert_message.html"/>
+		<!-- END CONTENT -->
+			
+	</div>
+	<!-- END CONTAINER -->
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-lazy-init="true">
+	<bean id="adminLoginAct" class="com.dgut.main.action.AdminLoginAct"/>
+    <bean id="adminLogAct" class="com.dgut.main.action.AdminLogAct"/>
+    <bean id="adminGlobalAct" class="com.dgut.main.action.AdminGlobalAct" />
+    <bean id="roleAct" class="com.dgut.main.action.RoleAct" />
+	<bean id="welcomeAct" class="com.dgut.main.action.WelcomeAct"/>
+	<bean id="frameAct" class="com.dgut.main.action.FrameAct"/>
+	<bean id="personalAct" class="com.dgut.main.action.PersonalAct"/>
+	<bean id="studentAct" class="com.dgut.member.action.StudentAct" />
+	<bean id="classAct" class="com.dgut.main.action.main.ClassAct" />
+	<bean id="mClassAct" class="com.dgut.main.action.main.MClassAct" />
+	<bean id="courseAct" class="com.dgut.main.action.main.CourseAct" />
+	<bean id="classCourseAct" class="com.dgut.main.action.main.ClassCourseAct" />
+	<bean id="scoreAct" class="com.dgut.main.action.main.ScoreAct" />
+	<bean id="mScoreAct" class="com.dgut.main.action.main.MScoreAct" />
+	<bean id="noticeAct" class="com.dgut.main.action.main.NoticeAct" />
+	<bean id="fileAct" class="com.dgut.main.action.main.FileAct" />
+	
+</beans>

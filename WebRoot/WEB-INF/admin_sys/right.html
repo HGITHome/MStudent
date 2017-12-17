@@ -1,0 +1,149 @@
+<div class="page-content-wrapper">
+  <link href="${base}/res/myassets/css/font-awesome.css" rel="stylesheet" />
+    <link href="${base}/res/myassets/css/basic.css" rel="stylesheet" />
+   
+    <link href="${base}/res/myassets/css/custom.css" rel="stylesheet" />
+	<!-- BEGIN CONTENT BODY -->
+	<div style="min-height:1022px" class="page-content">
+		<!-- page bar start -->
+		<div class="page-bar">
+
+			<ul class="page-breadcrumb">
+				<li><a href="index.do">首页</a> <i class="fa fa-angle-right"></i>
+				</li>
+				<li><span>系统信息</span>
+				</li>
+			</ul>
+		</div>
+		<hr/>
+		<div class="row">
+
+			             <div class="col-md-12">
+
+                                 <div class="panel panel-default">
+                                <div id="reviews" class="carousel slide" data-ride="carousel">
+
+                                    <div class="carousel-inner">
+                                         <div class="carousel-inner">
+									<#list noticeList as notice>
+                                    <div class="item <#if notice_index == 0> active </#if>">
+                                       <div class="col-md-10 col-md-offset-1">
+                                        <a href="o_info.do?id=${notice.id}"><img src="${base}${notice.photoUrl!}" alt="" style="width:1300px;height:300px;"/></a>
+                                       </div>
+                                    </div>
+                                   </#list>
+                                </div>
+                                    </div>
+                                    <!--INDICATORS-->
+                                    <ol class="carousel-indicators">
+									<#list noticeList as notice>
+                                        <li data-target="#reviews" data-slide-to="${notice_index}"  class="<#if notice_index == 0> active </#if>"></li>
+                                      </#list>
+                                    </ol>
+                                    <!--PREVIUS-NEXT BUTTONS-->
+                                <a class="left carousel-control" href="#reviews" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#reviews" data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                                </div>
+                                </div>
+                            </div>
+
+		</div>
+
+<hr/>
+		<div class="row">
+
+			<div class="col-md-6">
+                            <!-- BEGIN SAMPLE TABLE PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-social-dribbble font-green"></i>
+                                        <span class="caption-subject font-green bold uppercase">公告列表</span>
+                                    </div>
+                                    <div class="actions">
+                                       <a href="v_list.do"> 更多>></a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-scrollable">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                   
+                                                    <th colspan="2"> 标题 </th>
+                                                    <th colspan="2"> 创建时间 </th>
+                                                     <th> 查看 </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <#if noticeList??>
+                                            <#list noticeList as notice>
+                                                <tr>
+                                                    <td colspan="2"> ${notice.title!} </td>
+                                                    <td colspan="2"> ${notice.createTime?string("yyyy-MM-dd HH:mm:ss")} </td>
+                                                    <td> <i class="fa fa-eye"></i><a href="o_info.do?id=${notice.id}">查看</a></td>
+                                                </tr>
+                                                </#list>
+                                                </#if>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- END SAMPLE TABLE PORTLET-->
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <!-- BEGIN SAMPLE TABLE PORTLET-->
+                            <div class="portlet light bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-social-dribbble font-green"></i>
+                                        <span class="caption-subject font-green bold uppercase">文章下载</span>
+                                    </div>
+                                    <div class="actions">
+                                     <a href="o_list.do">更多>></a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="table-scrollable">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th style="text-align: center;"> 文件名 </th>
+                                                    <th style="text-align: center;"> 上传时间 </th>
+                                                    <th style="text-align: center;">下载次数</th>
+                                                    <th style="text-align: center;"> 下载 </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <#if fileList??>
+                                            <#list fileList as file>
+                                                <tr>
+                                                    <td style="text-align: center;"> ${file.fileName!} </td>
+                                                    <td style="text-align: center;"> ${file.uploadTime?string("yyyy-MM-dd HH:mm:ss")} </td>
+                                                    <td style="text-align: center;">${file.downNumber!}</td> 
+                                                    <td style="text-align: center;"><i class="fa fa-download"></i> <a href="file/o_down.do?fileId=${file.id}">下载</a> </td>
+                                                </tr>
+                                               </#list>
+                                           </#if>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+		</div>
+	</div>
+	
+	<script src="${base}/res/myassets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="${base}/res/myassets/js/bootstrap.js"></script>
+    <script src="${base}/res/myassets/js/jquery.metisMenu.js"></script>
+      
+    <script src="${base}/res/myassets/js/custom.js"></script>
+</div>

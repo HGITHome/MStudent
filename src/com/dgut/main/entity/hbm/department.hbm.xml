@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dgut.main.entity">
+	<class name="Department" table="department">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="integer" column="department_id"><generator class="identity"/></id>
+		<property name="name" column="department_name" type="string" not-null="true" length="100"/>
+		<property name="priority" column="priority" type="integer" not-null="true" length="10"/>
+		<set name="majorSet" inverse="true" cascade="all" order-by="major_id asc">
+		  <key column="department_id" />
+		  <one-to-many class="com.dgut.main.entity.Major"/>
+		</set>
+	</class>
+</hibernate-mapping>

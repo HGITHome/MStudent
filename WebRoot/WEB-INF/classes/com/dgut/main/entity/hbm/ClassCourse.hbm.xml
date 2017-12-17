@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dgut.main.entity">
+	<class name="ClassCourse" table="class_course">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="integer" column="id"><generator class="identity"/></id>
+		<property name="term" column="term" type="integer" not-null="true" length="11"/>
+	    <property name="isInput" column="isInput" type="int" not-null="false" length="11" />
+		<many-to-one name="course" column="course_id" class="com.dgut.main.entity.Course" cascade="save-update"/>
+	
+		<many-to-one name="major" column="major_id" unique="true" cascade="save-update" class="com.dgut.main.entity.Major"/>
+		
+		<many-to-one name="bclass" column="class_id" unique="true" cascade="save-update" class="com.dgut.main.entity.BClass"/>
+	</class>
+</hibernate-mapping>

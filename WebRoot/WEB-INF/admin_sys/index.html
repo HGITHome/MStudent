@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>${title!""}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<#include "/admin_sys/head.html"/>
+<link href="${base}/res/assets/pages/css/invoice-2.min.css"
+	rel="stylesheet" type="text/css" />
+
+</head>
+<!-- END HEAD -->
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
+	<!-- BEGIN HEADER -->
+	<#include "/admin_sys/top.html"/>
+	<!-- END HEADER -->
+	<!-- BEGIN HEADER & CONTENT DIVIDER -->
+	<div class="clearfix"></div>
+	<!-- END HEADER & CONTENT DIVIDER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+			
+			<#assign tb_11=true />
+			<#assign tb_11_ul=true  />
+			<#assign tb_11_li_1=true />
+			<#assign tb_11_arrow=true />
+		<#include "/admin_sys/left.html"/>
+		<!-- END SIDEBAR -->
+		<!-- BEGIN CONTENT -->
+		<#include "/admin_sys/right.html"/>
+		<!-- END CONTENT -->
+
+	</div>
+	<!-- END CONTAINER -->
+</body>
+
+</html>

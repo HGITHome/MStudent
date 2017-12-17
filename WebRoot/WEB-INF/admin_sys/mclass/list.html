@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
+
+<head>
+<meta charset="utf-8" />
+<title>学生信息管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<#include "/admin_sys/head.html"/>
+
+<link
+	href="${base}/res/assets/global/plugins/datatables/datatables.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="${base}/res/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css"
+	rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+function getTableForm() {
+	return document.getElementById('tableForm');
+}
+function optDelete() {
+	if(Pn.checkedCount('ids')<=0) {
+		alert("<@s.m 'error.checkRecord'/>");
+		return;
+	}
+	if(!confirm("<@s.m 'global.confirm.delete'/>")) {
+		return;
+	}
+	var f = getTableForm();
+	f.action="o_delete_operating.do";
+	f.submit();
+}
+</script>
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
+	<!-- BEGIN HEADER -->
+	<#include "/admin_sys/top.html"/>
+	<!-- END HEADER -->
+	<!-- BEGIN HEADER & CONTENT DIVIDER -->
+	<div class="clearfix"></div>
+	<!-- END HEADER & CONTENT DIVIDER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<#assign tb_13=true />
+			<#assign tb_13_ul=true  />
+			<#assign tb_13_li_2=true />
+			<#assign tb_13_arrow=true />
+		<#include "/admin_sys/left.html"/>
+		<!-- END SIDEBAR -->
+		<div class="page-content-wrapper">
+			<!-- BEGIN CONTENT BODY -->
+			<div style="min-height:1022px" class="page-content">
+				<!-- page bar start -->
+				<div class="page-bar">
+
+					<ul class="page-breadcrumb">
+						<li><a href="v_list.do">班级管理</a> <i class="fa fa-angle-right"></i>
+						</li>
+						<li><span>班级学生</span></li>
+					</ul>
+				</div>
+
+				<div class="row ">
+					<div class="col-md-12">
+						<!-- BEGIN SAMPLE FORM PORTLET-->
+						<div class="portlet box red bordered">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-comments"></i>筛选
+								</div>
+								<div class="tools">
+									<a class="collapse" href="" data-original-title="" title="">
+									</a> <a class="remove" href="" data-original-title="" title="">
+									</a>
+								</div>
+							</div>
+							<div class="portlet-body">
+
+								<form action="v_list.do" method="post" class="form-inline" >
+								        <div class="form-group">
+                                          	院系名称：
+                                            <input type="text" class="form-control" placeholder="" name="queryDepartmentName" value="${queryDepartmentName!}">
+                                          </div>
+                                          <div class="form-group">
+                                          	专业名称：
+                                            <input type="text" class="form-control" placeholder="" name="queryMajorName" value="${queryMajorName!}">
+                                          </div>
+								          <div class="form-group">
+                                          	班级名称：
+                                            <input type="text" class="form-control" placeholder="" name="queryClassName" value="${queryClassName!}">
+                                          </div>
+										 <input
+											class="btn red" type="submit" value="查询"/>
+								</form>
+
+
+
+							</div>
+						</div>
+						<!-- END SAMPLE FORM PORTLET-->
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN SAMPLE TABLE PORTLET-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-comments"></i>列表
+								</div>
+								<!-- <div class="actions">
+									<a href="v_add.do" class="btn btn-default btn-sm"> <i
+										class="fa fa-plus"></i>添加</a> 
+									
+								</div> -->
+							</div>
+
+							<div class="portlet-body">
+								<form id="tableForm" method="post">
+									<input type="hidden" name="pageNo" value="${pageNo!}"/>
+									<div class="table-scrollable">
+										<table
+											class="table table-bordered table-hover dataTable table-checkable ">
+											<thead>
+												<tr>
+													<th>ID</th>
+													<th style="text-align: center;">院系</th>
+													<th style="text-align: center;">专业</th>
+													<th style="text-align: center;">班名</th>
+													<th style="text-align: center;">年级</th>
+													<th style="text-align: center;">查看班级学生</th>
+												</tr>
+											</thead>
+											<tbody>
+												<#list pagination.list as class>
+												<tr>
+													<td style="text-align: center;">${class.id}</td>
+													<td style="text-align: center;">${class.major.department.name!}</td>
+													<td style="text-align: center;">${class.major.name!}</td>
+													<td style="text-align: center;">${class.className!}</td>
+													<td style="text-align: center;">${class.grade!}</td>
+													<td style="text-align: center;"><i class="fa fa-eye"></i><a href="o_info.do?classId=${class.id}">查看</a></td>
+												</tr>
+
+												</#list>
+											</tbody>
+										</table>
+									</div>
+									<@p.pagination value=pagination;class,i,has_next>
+									</@p.pagination>
+								</form>
+							</div>
+
+
+						</div>
+						<!-- END SAMPLE TABLE PORTLET-->
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- BEGIN CONTENT -->
+
+		<#include "/common/bootAlert_message.html"/>
+		<!-- END CONTENT -->
+			
+	</div>
+	<!-- END CONTAINER -->
+</body>
+
+</html>

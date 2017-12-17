@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dgut.main.entity">
+	<class name="Notice" table="notice">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="integer" column="id"><generator class="identity"/></id>
+		<property name="title" column="title" type="string" not-null="true" length="100"/>
+		<property name="photoUrl" column="photoUrl" type="string" not-null="true" length="100"/>
+		<property name="imagUrl" column="imagUrl" type="string" not-null="true" length="100" />
+		<property name="fileUrl" column="fileUrl" type="string" not-null="true" length="100"/>
+		<property name="createTime" column="createTime" type="timestamp" not-null="true" />
+		<many-to-one name="admin" column="admin_id" class="com.dgut.main.entity.Admin" />
+	</class>
+</hibernate-mapping>

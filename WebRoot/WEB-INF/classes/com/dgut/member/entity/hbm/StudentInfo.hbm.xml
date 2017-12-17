@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dgut.member.entity">
+	<class name="StudentInfo" table="studentinfo">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="java.lang.Integer" column="student_id"><generator class="identity"/></id>
+		<property name="name" column="student_name" type="string" not-null="true" length="100"/>
+		<property name="schoolNumber" column="school_number" type="string" not-null="true" length="100"/>
+		<property name="gender" column="gender" type="integer" not-null="true" length="1" />
+		<property name="nation" column="nation" type="string" not-null="true" length="100" />
+		<property name="political_status" column="political_status" type="string" length="100" />
+		<property name="nickname" column="nickname" type="string" not-null="true" length="100"/>
+		<property name="ID" column="ID" type="string"  not-null="true" length="18"/>
+		<property name="birthday" column="birthday" type="date" not-null="true"  />
+		<property name="Native" column="native" type="string" not-null="true" length="100"  />
+		<property name="education" column="education" type="string" not-null="true" length="100"/>
+		<property name="entranceTime" column="entrance_time" type="date" not-null="true"/>
+		<property name="address" column="address" type="string" not-null="true" length="100" />
+		<property name="homePhone" column="home_phone" type="string" not-null="true" length="11"/>
+		<property name="postalcode" column="postalcode" type="string" not-null="true" length="6"/>
+		<property name="selfPhone" column="self_phone" type="string" not-null="true" length="11" />
+		<property name="email" column="email" type="string" not-null="true" length="100" />
+		<property name="iconUrl" column="iconUrl" type="string" not-null="true" length="100"/>
+		<property name="miniUrl" column="miniUrl" type="string" not-null="true" length="100"/>
+		<many-to-one name="major" column="major_id" cascade="save-update" class="com.dgut.main.entity.Major" />
+		<many-to-one name="bclass" column="class_id" cascade="save-update" class="com.dgut.main.entity.BClass" />
+		<many-to-one name="member" column="member_id" cascade="save-update" class="com.dgut.member.entity.Member" />
+	</class>
+</hibernate-mapping>

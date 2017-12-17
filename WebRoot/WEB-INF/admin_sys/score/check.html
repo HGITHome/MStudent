@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>学生信息管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<#include "/admin_sys/head.html"/>
+
+<link
+	href="${base}/res/assets/global/plugins/datatables/datatables.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="${base}/res/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css"
+	rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+function getTableForm() {
+	return document.getElementById('tableForm');
+}
+
+
+</script>
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
+	<!-- BEGIN HEADER -->
+	<#include "/admin_sys/top.html"/>
+	<!-- END HEADER -->
+	<!-- BEGIN HEADER & CONTENT DIVIDER -->
+	<div class="clearfix"></div>
+	<!-- END HEADER & CONTENT DIVIDER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<#assign tb_15=true />
+			<#assign tb_15_ul=true  />
+			<#assign tb_15_li_1=true />
+			<#assign tb_15_arrow=true />
+		<#include "/admin_sys/left.html"/>
+		<!-- END SIDEBAR -->
+		<div class="page-content-wrapper">
+			<!-- BEGIN CONTENT BODY -->
+			<div style="min-height:1022px" class="page-content">
+				<!-- page bar start -->
+				<div class="page-bar">
+
+					<ul class="page-breadcrumb">
+						<li><a href="v_list.do">成绩管理</a> <i class="fa fa-angle-right"></i>
+						</li>
+						<li><span>成绩录入</span></li>
+					</ul>
+				</div>
+				<div class="row ">
+					<div class="col-md-12">
+						<!-- BEGIN SAMPLE FORM PORTLET-->
+						<div class="portlet box red bordered">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-comments"></i>
+								</div>
+								<div class="actions">
+									
+									<a href="v_list.do" class="btn btn-default btn-sm"> <i
+										class="fa fa-reply"></i>返回</a> 
+									
+								</div>
+							</div>
+							<div class="portlet-body">
+							<h3>${cc.major.department.name}-${cc.major.name}-${cc.bclass.className}-第${cc.term}学期-${cc.course.courseName} 课程成绩查询</h3>
+							</div>
+						</div>
+						<!-- END SAMPLE FORM PORTLET-->
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+					  <div class="col-md-12">
+					
+					  
+                            <div class="portlet light portlet-fit bordered">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="icon-bubble font-dark"></i>
+                                        <span class="caption-subject font-dark bold uppercase">学生列表</span>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                <form id="tableForm" method="post">
+                                    <div class="table-scrollable">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>姓名</th>
+                                                    <th>学号 </th>
+                                                    <th>成绩</th>
+                                                    <th>绩点</th>
+                                                    <th>学分</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                           <#list scoreList as score>
+                                                <tr>
+                                                    <td><span name="studentId">${score.student.id!}</span></td>
+                                                    <td>${score.student.name!} </td>
+                                                    <td>${score.student.schoolNumber!} </td>
+                                                    <td>${score.score!}</td>
+                                                    <td>${score.point!}</td>
+                                                    <td>${score.grade_point!}</td>
+                                                   <!--  <td><input type="text" name="score" class="form-control input-inline input-medium" placeholder="" /></td> -->
+                                                </tr>
+                                         </#list>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+				</div>
+
+			</div>
+		</div>
+		<!-- BEGIN CONTENT -->
+
+        <script type="text/javascript">
+       
+    /*       function optInput(t){
+        	  var score = $("input[name='"+t.value+"']").val();
+        	  if(score == null || $.trim(score)==""){
+        		 bootbox.alert("请输入分数再录入!");
+        	  }else{
+        	  $.ajax({
+                  url: "o_save.do",
+                  type: "post",
+                  data: { "studentId": t.value, "courseId": ${cc.course.id},"term":${cc.term},"score":score,"classId":${cc.bclass.id} },
+                  success: function(data) {
+                	  if(data == "录入失败！参数不完整!"){
+                		  bootbox.alert(data);
+                	  }else{
+                	   var str = data.split(",");
+                	   $("#point"+t.value).html(str[0]);
+                	   $("#grade"+t.value).html(str[1]);
+                       $("#"+t.value).html(score);
+                       $("#button"+t.value).attr("disabled","true");
+                       bootbox.alert("录入成功!");
+                	  }
+                  },
+                  error:function(xhr,textStatus){
+                      console.log('错误')
+                      console.log(xhr)
+                      console.log(textStatus)
+                  },
+              });
+        	  }
+          } */
+        </script>
+
+		<#include "/common/bootAlert_message.html"/>
+		<!-- END CONTENT -->
+			
+	</div>
+	<!-- END CONTAINER -->
+</body>
+
+</html>

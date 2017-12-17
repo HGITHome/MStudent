@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>学生信息管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<#include "/admin_sys/head.html"/>
+
+<link
+	href="${base}/res/assets/global/plugins/datatables/datatables.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="${base}/res/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css"
+	rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+function getTableForm() {
+	return document.getElementById('tableForm');
+}
+
+</script>
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
+	<!-- BEGIN HEADER -->
+	<#include "/admin_sys/top.html"/>
+	<!-- END HEADER -->
+	<!-- BEGIN HEADER & CONTENT DIVIDER -->
+	<div class="clearfix"></div>
+	<!-- END HEADER & CONTENT DIVIDER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<#assign tb_15=true />
+			<#assign tb_15_ul=true  />
+			<#assign tb_15_li_2=true />
+			<#assign tb_15_arrow=true />
+		<#include "/admin_sys/left.html"/>
+		<!-- END SIDEBAR -->
+		<div class="page-content-wrapper">
+			<!-- BEGIN CONTENT BODY -->
+			<div style="min-height:1022px" class="page-content">
+				<!-- page bar start -->
+				<div class="page-bar">
+
+					<ul class="page-breadcrumb">
+						<li><a href="v_list.do">成绩管理</a> <i class="fa fa-angle-right"></i>
+						</li>
+						<li><span>成绩统计</span></li>
+					</ul>
+				</div>
+
+				<div class="row ">
+					<div class="col-md-12">
+						<!-- BEGIN SAMPLE FORM PORTLET-->
+				
+						<!-- END SAMPLE FORM PORTLET-->
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN SAMPLE TABLE PORTLET-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-comments"></i>学生列表
+								</div>
+								<div class="actions">
+									<a href="v_list.do" class="btn btn-default btn-sm"> <i
+										class="fa fa-back"></i>返回</a> 
+									
+								</div>
+							</div>
+
+							<div class="portlet-body">
+								<form id="tableForm" method="post">
+									<input type="hidden" name="pageNo" value="${pageNo!}"/>
+									<div class="table-scrollable">
+										<table
+											class="table table-bordered table-hover dataTable table-checkable ">
+											<thead>
+												<tr>
+													<th style="text-align: center;">ID</th>
+													<th style="text-align: center;">姓名</th>
+													<th style="text-align: center;">学号</th>
+													<th style="text-align: center;">性别</th>
+													<th style="text-align: center;">查看成绩</th>
+												</tr>
+											</thead>
+											<tbody>
+												<#list studentList as student>
+												<tr>
+													<td style="text-align: center;">${student.id}</td>
+													<td style="text-align: center;">${student.name!}</td>
+													<td style="text-align: center;">${student.schoolNumber!}</td>
+													<td style="text-align: center;">
+                                                    <#if student.gender == 1>
+													   男
+													   <#else>
+													   女
+													   </#if>              
+                                                   </td>
+                                                  <td style="text-align:center;"><a href="o_show.do?studentId=${student.id}"><i class="fa fa-eye"></i>查看</a></td>
+												</tr>
+
+												</#list>
+											</tbody>
+										</table>
+									</div>
+									
+								</form>
+							</div>
+
+
+						</div>
+						<!-- END SAMPLE TABLE PORTLET-->
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- BEGIN CONTENT -->
+
+		<#include "/common/bootAlert_message.html"/>
+		<!-- END CONTENT -->
+			
+	</div>
+	<!-- END CONTAINER -->
+</body>
+
+</html>

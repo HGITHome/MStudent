@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8" />
+<title>学生信息管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<!-- BEGIN GLOBAL MANDATORY STYLES -->
+<#include "/admin_sys/head.html"/>
+<link type="text/css" rel="stylesheet" href="${base}/res/assets/global/plugins/icheck/skins/all.css">
+<link href="${base }/res/assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
+	<!-- BEGIN HEADER -->
+	<#include "/admin_sys/top.html"/>
+	<!-- END HEADER -->
+	<!-- BEGIN HEADER & CONTENT DIVIDER -->
+	<div class="clearfix"></div>
+	<!-- END HEADER & CONTENT DIVIDER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<#assign tb_11=true />
+			<#assign tb_11_ul=true  />
+			<#assign tb_11_li_1=true />
+			<#assign tb_11_arrow=true />
+		<#include "/admin_sys/left.html"/>
+		<!-- END SIDEBAR -->
+		<div class="page-content-wrapper">
+			<!-- BEGIN CONTENT BODY -->
+			<div style="min-height:1022px" class="page-content">
+				<!-- page bar start -->
+				<div class="page-bar">
+
+					<ul class="page-breadcrumb">
+						<li><a href="v_list.do">公告管理</a> <i class="fa fa-angle-right"></i>
+						</li>
+						<li><span>查看</span>
+						</li>
+					</ul>
+				</div>
+				<hr/>
+				<div class="row">
+					 <div class="col-md-12 ">
+                            <!-- BEGIN Portlet PORTLET-->
+                            <div class="portlet box blue-hoki">
+                                <div class="portlet-title">
+                                    <div class="caption">
+                                        <i class="fa fa-gift"></i>公告详情 </div>
+                                    <div class="actions">
+                                         <a href="index.do" class="btn btn-default btn-sm">
+                                            <i class="fa fa-reply"></i>返回</a>
+                                    </div>
+                                </div>
+                                <div class="portlet-body">
+                                    <div class="scroller" style="height:800px" data-rail-visible="1" data-rail-color="yellow" data-handle-color="#a1b2bd">
+                                       
+                                        <br/>${content!}</div>
+                                </div>
+                            </div>
+                        </div>
+				</div>
+			</div>
+		</div>
+		<#include "/common/bootAlert_message.html"/>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.dgut.main.entity">
+	<class name="Course" table="course">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="integer" column="course_id"><generator class="identity"/></id>
+		<property name="courseName" column="course_name" type="string" not-null="true" length="100"/>
+		<property name="creditHour" column="creditHour" type="double" not-null="true" length="11"/>
+		<property name="courseHour" column="courseHour" type="integer" not-null="true" length="11" />
+		<many-to-one name="courseCategory" column="course_category_id"  cascade="save-update" class="com.dgut.main.entity.CourseCategory"/>
+		<many-to-one name="department" column="department_id" cascade="save-update" class="com.dgut.main.entity.Department" />
+	</class>
+</hibernate-mapping>

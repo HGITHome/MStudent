@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+	default-lazy-init="true">
+	<!-- 国际化和'热'加载文件(修改属性文件时不用重启应用就可以加载). -->
+	<bean id="tplMessageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="cacheSeconds" value="0"/>
+		<property name="basenames">
+			<list>
+				<value>/WEB-INF/languages/jeecms_tpl/messages</value>
+			</list>
+		</property>
+	</bean>
+	<!--标签-->
+	
+	<!--后台权限标签-->
+	<bean id="cms_perm" class="com.dgut.main.web.PermistionDirective"/>
+	<!-- dao层 -->
+	    <bean id="adminDao" class="com.dgut.main.dao.impl.AdminDaoImpl"/>
+	    <bean id="adminLogDao" class="com.dgut.main.dao.impl.AdminLogDaoImpl" />
+	    <bean id="authenticationDao" class="com.dgut.main.dao.impl.AuthenticationDaoImpl"/>
+	    <bean id="memberAuthentication" class="com.dgut.member.dao.impl.MemberAuthenticationDaoImpl" />
+	    <bean id="memberDao" class="com.dgut.member.dao.impl.MemberDaoImpl" />
+	    <bean id="memberLogDao" class="com.dgut.member.dao.impl.MemberLogDaoImpl" />
+	    <bean id="studentInfoDao" class="com.dgut.member.dao.impl.StudentInfoDaoImpl" />
+	    <bean id="cityDao" class="com.dgut.main.dao.impl.CityDaoImpl"/>
+	    <bean id="classCourseDao" class="com.dgut.main.dao.impl.ClassCourseDaoImpl" />
+	    <bean id="classDao" class="com.dgut.main.dao.impl.ClassDaoImpl"/>
+	    <bean id="courseDao" class="com.dgut.main.dao.impl.CourseDaoImpl" />
+	    <bean id="departmentDao" class="com.dgut.main.dao.impl.DepartmentDaoImpl"/>
+	    <bean id="majorDao" class="com.dgut.main.dao.impl.MajorDaoImpl" />
+	    <bean id="roleDao" class="com.dgut.main.dao.impl.RoleDaoImpl" />
+	    <bean id="scoreDao" class="com.dgut.main.dao.impl.ScoreDaoImpl" />
+	    <bean id="configDao" class="com.dgut.core.dao.impl.ConfigDaoImpl" />
+	    <bean id="courseCategoryDao" class="com.dgut.main.dao.impl.CourseCategoryDaoImpl"/>
+	    <bean id="noticeDao" class="com.dgut.main.dao.impl.NoticeDaoImpl" />
+	    <bean id="fileDao" class="com.dgut.main.dao.impl.FileDaoImpl" />
+	
+	<!--SERVICE-->
+		<bean id="adminMng" class="com.dgut.main.manager.impl.AdminMngImpl"/>
+		<bean id="adminLogMng" class="com.dgut.main.manager.impl.AdminLogMngImpl"/>
+		<bean id="roleMng" class="com.dgut.main.manager.impl.RoleMngImpl"/>
+		<bean id="adminAuthenMng" class="com.dgut.main.manager.impl.AuthenticationMngImpl"/>
+		<bean id="cityMng" class="com.dgut.main.manager.impl.CityMngImpl"/>
+		
+		<bean id="memberMng" class="com.dgut.member.manager.impl.MemberMngImpl"/>
+		<bean id="memberLogMng" class="com.dgut.member.manager.impl.MemberLogMngImpl"/>
+		<bean id="memberAuthenMng" class="com.dgut.member.manager.impl.MemberAuthenticationMngImpl"/>
+		<bean id="departmentMng" class="com.dgut.main.manager.impl.DepartmentMngImpl" />
+		<bean id="majorMng" class="com.dgut.main.manager.impl.MajorMngImpl" />
+		<bean id="studentInfoMng" class="com.dgut.member.manager.impl.StudentInfoMngImpl" />
+		<bean id="classMng" class="com.dgut.main.manager.impl.ClassMngImpl" />
+		<bean id="courseMng" class="com.dgut.main.manager.impl.CourseMngImpl" />
+		<bean id="classCourseMng" class="com.dgut.main.manager.impl.ClassCourseMngImpl" />
+		<bean id="scoreMng" class="com.dgut.main.manager.impl.ScoreMngImpl" />
+	    <bean id="courseCategoryMng" class="com.dgut.main.manager.impl.CourseCategoryMngImpl" />
+	    <bean id="noticeMng" class="com.dgut.main.manager.impl.NoticeMngImpl" />
+	    <bean id="fileMng" class="com.dgut.main.manager.impl.FileMngImpl" />
+</beans>

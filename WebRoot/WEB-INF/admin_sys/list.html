@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>学生信息管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<#include "/admin_sys/head.html"/>
+
+<link
+	href="${base}/res/assets/global/plugins/datatables/datatables.min.css"
+	rel="stylesheet" type="text/css">
+<link
+	href="${base}/res/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css"
+	rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+function getTableForm() {
+	return document.getElementById('tableForm');
+}
+function optDelete() {
+	if(Pn.checkedCount('ids')<=0) {
+		alert("<@s.m 'error.checkRecord'/>");
+		return;
+	}
+	if(!confirm("<@s.m 'global.confirm.delete'/>")) {
+		return;
+	}
+	var f = getTableForm();
+	f.action="o_delete_operating.do";
+	f.submit();
+}
+</script>
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-container-bg-solid page-md">
+	<!-- BEGIN HEADER -->
+	<#include "/admin_sys/top.html"/>
+	<!-- END HEADER -->
+	<!-- BEGIN HEADER & CONTENT DIVIDER -->
+	<div class="clearfix"></div>
+	<!-- END HEADER & CONTENT DIVIDER -->
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+		<!-- BEGIN SIDEBAR -->
+		<#assign tb_11=true />
+			<#assign tb_11_ul=true  />
+			<#assign tb_11_li_1=true />
+			<#assign tb_11_arrow=true />
+		<#include "/admin_sys/left.html"/>
+		<!-- END SIDEBAR -->
+		<div class="page-content-wrapper">
+			<!-- BEGIN CONTENT BODY -->
+			<div style="min-height:1022px" class="page-content">
+				<!-- page bar start -->
+				<div class="page-bar">
+
+					<ul class="page-breadcrumb">
+						<li><a href="v_list.do">公告管理</a> <i class="fa fa-angle-right"></i>
+						</li>
+						<li><span>公告列表</span></li>
+					</ul>
+				</div>
+				<hr/>
+				<div class="row">
+					<div class="col-md-12">
+						<!-- BEGIN SAMPLE TABLE PORTLET-->
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i class="fa fa-comments"></i>列表
+								</div>
+								
+								<div class="actions">
+									<a href="index.do" class="btn btn-default btn-sm"> <i
+										class="fa fa-reply"></i>返回</a> 
+									
+								</div>
+							</div>
+
+							<div class="portlet-body">
+								<form id="tableForm" method="post">
+									<input type="hidden" name="pageNo" value="${pageNo!}"/>
+									<div class="table-scrollable">
+										<table
+											class="table table-bordered table-hover dataTable table-checkable ">
+											<thead>
+												<tr>
+													<th style="text-align: center;">标题</th>
+													<th style="text-align: center;">创建者</th>
+													<th style="text-align: center;">创建时间</th>
+													<th style="text-align: center;">查看详情</th>
+													
+												</tr>
+											</thead>
+											<tbody>
+												<#list pagination.list as notice>
+												<tr>
+													<td style="text-align: center;">${notice.title!}</td>
+													<td style="text-align: center;">${notice.admin.username!}</td>
+													<td style="text-align: center;">${notice.createTime?string("yyyy-MM-dd HH:mm:ss")!}</td>
+													<td style="text-align: center;"><i class="fa fa-eye"></i><a href="o_info.do?id=${notice.id}">查看</a></td>
+													
+												</tr>
+
+												</#list>
+											</tbody>
+										</table>
+									</div>
+									<@p.pagination value=pagination;notice,i,has_next>
+									</@p.pagination>
+								</form>
+							</div>
+
+
+						</div>
+						<!-- END SAMPLE TABLE PORTLET-->
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-- BEGIN CONTENT -->
+
+		<#include "/common/bootAlert_message.html"/>
+		<!-- END CONTENT -->
+			
+	</div>
+	<!-- END CONTAINER -->
+</body>
+
+</html>
